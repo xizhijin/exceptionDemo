@@ -1,19 +1,24 @@
 package com.eric.exception;
 
+/**
+ * @author xizhijin
+ * 异常抛出顺序：testEx2-》testEx1-》testEx0-》main
+ */
 public class ExceptionDemo {  
-    public ExceptionDemo() {  
+    
+	public ExceptionDemo() {  
     }  
   
-    boolean testEx() {  
+    boolean testEx0() {  
         boolean ret = true;  
         try {  
             ret = testEx1(); 
         } catch (Exception e) {  
-            System.out.println("testEx, catch exception");  
+            System.out.println("testEx0, catch exception");  
             ret = false;
             throw e;  
         } finally {  
-            System.out.println("testEx, finally; return value=" + ret);  
+            System.out.println("testEx0, finally; return value=" + ret);  
         }
         return ret;
     }  
@@ -26,7 +31,6 @@ public class ExceptionDemo {
                 return false;  
             }  
             System.out.println("testEx1, at the end of try");  
-            
         } catch (Exception e) {  
             System.out.println("testEx1, catch exception");  
             ret = false;  
@@ -41,7 +45,7 @@ public class ExceptionDemo {
         boolean ret = true;  
         try {  
             int b = 12;  
-            for (int i = 2; i >= -2; i--) {  
+            for (int i = 2; i >= 0; i--) {  
                 int c = b / i;  
                 System.out.println("c=" + c);  
             }  
@@ -54,18 +58,6 @@ public class ExceptionDemo {
         }  
         return true;  
     }  
-  
-    public static void main(String[] args) {  
-        /*ExceptionDemo demo = new ExceptionDemo();  
-        try {  
-            System.out.println(demo.testEx());
-        } catch (Exception e) {  
-            e.printStackTrace();  
-        }  
-        System.out.println("程序正常終止");*/
-    	System.out.println(test());
-    	
-    }  
     
     public static int test() {
     	int i = 0;
@@ -76,4 +68,16 @@ public class ExceptionDemo {
     		i = 5;
     	}
     }
+    
+    public static void main(String[] args) {  
+    	ExceptionDemo demo = new ExceptionDemo();  
+        try {  
+            System.out.println(demo.testEx0());
+        } catch (Exception e) {  
+            e.printStackTrace();  
+        }  
+        System.out.println("程序正常終止");
+    	/*System.out.println(test());*/
+    }  
+    
 }  
